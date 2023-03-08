@@ -66,6 +66,9 @@ session_start();
                 <p class="information__content__text">
                     <strong>6. Adım:</strong> Sistemde verileriniz asla kayıt altına alınmaz. Cihazınızda saklanır <small>(sadece sizi takip etmeyen kişilerin kullanıcı adları)</small>. Cihazınızdaki verileri silmek için 'Sistemi Temizle' butonuna tıklayabilirsiniz.
                 </p>
+                <p class="information__content__text" style="margin-top: 4rem;">
+                    Açık kaynak kodlu bir projedir. <a href="https://github.com/Olgu-Batin-Topal/Instagram-Seni-Takip-Etmeyenler" target="_blank">Github</a> üzerinden inceleyebilirsiniz.
+                </p>
             </div>
         </section>
     <?php endif; ?>
