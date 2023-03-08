@@ -20,7 +20,6 @@ $(document).ready(function () {
                 });
 
                 if (msg.icon == 'success') {
-                    $('#progressBar').val(33);
                     $('#file').remove();
 
                     $.ajax({
@@ -39,7 +38,6 @@ $(document).ready(function () {
                             });
 
                             if (msg.icon == 'success') {
-                                $('#progressBar').val(66);
                                 $.ajax({
                                     url: 'api/unfollowing.php',
                                     type: 'POST',
@@ -47,7 +45,6 @@ $(document).ready(function () {
                                         unfollowing: 'start'
                                     },
                                     success: function (data) {
-                                        console.log(data);
                                         let msg = JSON.parse(data);
 
                                         new swal({
@@ -57,8 +54,6 @@ $(document).ready(function () {
                                         });
 
                                         if (msg.icon == 'success') {
-                                            $('#progressBar').val(100);
-
                                             setTimeout(function () {
                                                 location.reload();
                                             }, 1000);
@@ -69,7 +64,29 @@ $(document).ready(function () {
                         }
                     });
                 }
-            }
+            },
+            xhr: function () {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var pct = evt.loaded / evt.total;
+
+                        $("#progressBar").val(pct * 100);
+                    }
+                }, false);
+
+                xhr.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var pct = evt.loaded / evt.total;
+
+                        $("#progressBar").val(pct * 100);
+                        if (pct === 1) {
+                            $('#progressBar').addClass('hide');
+                        }
+                    }
+                }, false);
+                return xhr;
+            },
         });
     });
 
